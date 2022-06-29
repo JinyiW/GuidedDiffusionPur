@@ -1,0 +1,40 @@
+structure:
+  att_log: "cifar10" # Attacker model path
+  diff_name: "ema_cifar10" # Diff name
+  clf_log: "cifar10" # Classifier model path
+  classifier: "Wide_ResNet" # Classifier structure
+  dataset: "CIFAR10" # Dataset, in [MNIST, FashionMNIST, CIFAR10, CIFAR10C, CIFAR100]
+  bsize: 100 # Batch size
+  start_epoch: 0
+  end_epoch: 99
+  run_samples: 10000
+
+attack:
+  attack_method: "bpda_strong" # Attack method: list [clf_pgd, bpda_strong, spsa]
+  ptb: 8. # perturbation, pixel scale
+  alpha: 2. # One-step attack pixel scale
+  ball_dim: -1 # -1 if l_inf
+  n_eot: 15 # Number of EOT, 1 if no EOT applied
+  attack_lambda: 0.05 # adaptive attack step size strategy
+  attack_steps: 10 # Number of attack steps
+  iter: 100 # Number of iterations for gradient-based attacks
+
+purification:
+  purify_method: "diff_purify" # purification method in [diff_purify]
+  max_iter: 2 # Default maximum number of iterations 
+  path_number: 10
+  purify_step: 60
+  purify_natural: false # Whether to purify natural images, for time complexity
+  cond: true # whether to use conditional guide
+  guide_mode: SSIM
+  guide_scale: 1000
+  guide_scale_base: 0
+
+classification:
+  checkpoint: "origin" # which *.t7 to choose
+  classify_all_steps: false # Save all logits if true, Only last logit if false
+
+device:
+  diff_device: "cuda:1"
+  clf_device: "cuda:1"
+

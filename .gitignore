@@ -1,0 +1,10 @@
+*.t7
+**/__pycache__
+**/**/__pycache__
+
+*.pyc
+*.npz
+*.pt
+/logs/
+run.sh
+

@@ -1,0 +1,83 @@
+structure:
+  att_log: "cifar10" # Attacker model path
+  diff_name: "ema_cifar10" # Diff name
+  clf_log: "cifar10" # Classifier model path
+  classifier: "Wide_ResNet" # Classifier structure
+  dataset: "CIFAR10-C" # Dataset, in [MNIST, FashionMNIST, CIFAR10, CIFAR10-C, CIFAR100]
+  bsize: 100 # Batch size
+  start_epoch: 0
+  end_epoch: 99
+  CIFARC_CLASS: 1
+  CIFARC_SEV: 1
+
+attack:
+  attack_method: "cifar10c" # Attack method: list [clf_pgd, bpda, spsa, cifar10c]
+  ptb: 8. # perturbation, pixel scale
+  ball_dim: -1 # -1 or 1 or 2
+  n_eot: 1 # Number of EOT, 1 if no EOT applied
+  attack_lambda: 0.05 # adaptive attack step size strategy
+  attack_steps: 10 # Number of attack steps
+  iter: 40 # Number of iterations for gradient-based attacks
+
+purification:
+  purify_method: "diff_purify" # purification method in [diff_purify]
+  max_iter: 2 # Default maximum number of iterations 
+  path_number: 1
+  purify_step: 50
+  purify_natural: false # Whether to purify natural images, for time complexity
+  cond: true # whether to use conditional guide
+  guide_mode: VAR #'LINE' or "EXP" or 'VAR' or "CONSTANT"
+  guide_scale: 50
+  guide_scale_base: 0
+
+classification:
+  checkpoint: "origin" # which *.t7 to choose
+  classify_all_steps: false # Save all logits if true, Only last logit if false
+
+device:
+  diff_device: "cuda:1"
+  clf_device: "cuda:1"
+
+# ''''
+# parser.add_argument('--TSNE', action='store_true', help='See decision boundary of different attacks with respect to a single data')
+# parser.add_argument('--TSNE_CLASS', action='store_true', help='See t-SNE of purification with respect to different classes')
+# parser.add_argument('--HP_TUNING', action='store_true', help='Hyperparameter tuning with 500 validation set')
+# parser.add_argument('--TEST', action='store_true', help='Default test mode')
+
+# # Network parameters (EBM structure in config.yml)
+# parser.add_argument('--att_log', default='X', help='Attacker model path')
+# parser.add_argument('--ebm_log', default='X', help='EBM path')
+# parser.add_argument('--clf_log', default='X', help='Classifier model path')
+# parser.add_argument('--network', default='X', help='Attacker structure')
+# parser.add_argument('--classifier', default='X', help='Classifier structure')
+
+# # Attack details
+# parser.add_argument('--attack_method', default='fgsm', help='Attack method: list [fgsm, pgd, bim, pgd_white, bim_white, bpda]')
+# parser.add_argument('--ptb', type=float, default=8, help='e-ball size: # pixels for l_inf norm / maximum norm for l_1, l_2 norm') # Active for lp attacks
+# parser.add_argument('--random_start', default=False)
+# parser.add_argument('--ball_dim', type=int, default=-1, help='norm type of epsilon ball, [-1:l_inf, 1:l_1, 2:l_2]')
+# parser.add_argument('--pgdwhite_eps', default=2., type=float, help='Learning rate (/256) at one-shot unrolling attack (pgd_white, bim_white)')
+# parser.add_argument('--attack_start_sigma', default=0.01, type=float, help='Attack step size at 1st stage')
+# parser.add_argument('--attack_decay', default=0.01, type=float, help='Final attack decayed rate: Last attack step size (attack_start_sigma*attack_decay)')
+# parser.add_argument('--attack_alpha', default=0.05, type=float, help='Adaptive attack step size strategy')
+# parser.add_argument('--n_eot', default=1, type=int, help='number of EOT attacks')
+
+# # Purification
+# parser.add_argument('--purify_method', default='projection', help='Purification method, list: [projection, adaptive]')
+# parser.add_argument('--attack_step_decision', default='projection', help='How to decide attack step size, list: [projection, adaptive]')
+# parser.add_argument('--rand_smoothing', default=False, type=bool, help='Randomized smoothing after purification')
+# parser.add_argument('--smoothing_level', default=2., type=float, help='# pixels of randomized smoothing')
+# parser.add_argument('--init_noise', default=0., type=float, help='Noise before purification')
+# parser.add_argument('--input_ensemble', default=1, type=int, help='number of noisy inputs')
+
+# # Common corruption analysis
+# parser.add_argument('--CIFARC_CLASS', default=-1, type=int, help='Class of corruption, 1~15')
+# parser.add_argument('--CIFARC_SEV', default=0, type=int, help='Severity of corruption, 1~5')
+
+# # Learning rate parameters: Exponential decay
+# parser.add_argument('--start_sigma', default=0.01, type=float, help='Purifying step size at 1st stage')
+# parser.add_argument('--decay', default=0.01, type=float, help='Final decayed rate: Last step size (start_sigma*decay)')
+# parser.add_argument('--n_stages', default=10, type=int, help='# purification stages')
+# parser.add_argument('--alpha', default=0.2, type=float, help='Adaptive step size strategy at [adaptive]')
+# parser.add_argument('--e1', default=0.5, type=float, help='extra e1')
+# parser.add_argument('--e2', default=0.5, type=float, help='extra e2')

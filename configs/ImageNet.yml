@@ -1,0 +1,67 @@
+structure:
+  diff_name: "models/256x256_diffusion_uncond.pt" # Diff name
+  clf_log: "ImageNet" # Classifier model path
+  classifier: "ResNet152" # Classifier structure
+  dataset: "ImageNet" # Dataset, in [MNIST, FashionMNIST, CIFAR10, CIFAR10-C, CIFAR100]
+  bsize: 60 # Batch size on A100
+  run_samples: 50000
+
+net:
+  attention_resolutions: 32,16,8
+  batch_size: 30
+  channel_mult: ''
+  class_cond: false
+  clip_denoised: true
+  diffusion_steps: 1000
+  dropout: 0.0
+  image_size: 256
+  learn_sigma: true
+  model_path: "models/256x256_diffusion_uncond.pt"
+  noise_schedule: linear
+  num_channels: 256
+  num_head_channels: 64
+  num_heads: 4
+  num_heads_upsample: -1
+  num_res_blocks: 2
+  num_samples: 10000
+  predict_xstart: false
+  resblock_updown: true
+  rescale_learned_sigmas: false
+  rescale_timesteps: false
+  timestep_respacing: '250'
+  use_checkpoint: false
+  use_ddim: false
+  use_fp16: true
+  use_kl: false
+  use_new_attention_order: false
+  use_scale_shift_norm: true
+
+attack:
+  if_targeted: false 
+  attack_method: "clf_pgd" # Attack method: list [clf_pgd, bpda, spsa]
+  ptb: 4. # perturbation, pixel scale
+  ball_dim: -1 # -1 or 1 or 2
+  n_eot: 1 # Number of EOT, 1 if no EOT applied
+  attack_lambda: 0.05 # adaptive attack step size strategy
+  attack_steps: 40 # Number of attack steps
+  iter: 40 # Number of iterations for gradient-based attacks
+
+purification:
+  purify_method: "diff_purify" # purification method in [diff_purify]
+  max_iter: 1 # Default maximum number of iterations 
+  path_number: 1
+  purify_step: 45
+  purify_natural: true # Whether to purify natural images, for time complexity
+  cond: false # whether to use conditional guide
+  guide_mode: SSIM #'LINE' or "EXP" or 'VAR' or "CONSTANT"
+  guide_scale: 1000
+  guide_scale_base: 'per=4'
+
+classification:
+  # pretrained_file_name: '64x64_classifier.pt' # which *.t7 to choose
+  classify_all_steps: false # Save all logits if true, Only last logit if false
+
+device:
+  diff_device: "cuda:0"
+  clf_device: "cuda:0"
+  rank: 0
