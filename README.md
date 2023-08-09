@@ -4,18 +4,11 @@
 This repository includes the official PyTorch implementation of our [paper](https://arxiv.org/abs/2205.14969):
 
 ```
-@InProceedings{pmlr-v162-nie22a,
-  title = 	 {Diffusion Models for Adversarial Purification},
-  author =       {Nie, Weili and Guo, Brandon and Huang, Yujia and Xiao, Chaowei and Vahdat, Arash and Anandkumar, Animashree},
-  booktitle = 	 {Proceedings of the 39th International Conference on Machine Learning},
-  pages = 	 {16805--16827},
-  year = 	 {2022},
-  editor = 	 {Chaudhuri, Kamalika and Jegelka, Stefanie and Song, Le and Szepesvari, Csaba and Niu, Gang and Sabato, Sivan},
-  volume = 	 {162},
-  series = 	 {Proceedings of Machine Learning Research},
-  month = 	 {17--23 Jul},
-  publisher =    {PMLR},
-  pdf = 	 {https://proceedings.mlr.press/v162/nie22a/nie22a.pdf},
+@article{wang2022guided,
+  title={Guided diffusion model for adversarial purification},
+  author={Wang, Jinyi and Lyu, Zhaoyang and Lin, Dahua and Dai, Bo and Fu, Hongfei},
+  journal={arXiv preprint arXiv:2205.14969},
+  year={2022}
 }
 ```
 
