@@ -28,6 +28,21 @@ To run the experiments, enter the following command.
 ```
 python main.py --config <config-file>
 ```
+
+## Example CIFAR10
+
+Train the Cifar10 classifier with https://github.com/meliketoy/wide-resnet.pytorch and copy the weights `origin.t7' to
+```
+mkdir -p clf_models/run/logs/cifar10
+```
+
+For starting the purification process, execute
+```
+python main.py --config default.yml
+```
+
+## Example ImageNet
+
 For example, we provide the example configuration file `configs/ImageNet_PGD.yml` in the repository.
 
 ### Parallel Running code
