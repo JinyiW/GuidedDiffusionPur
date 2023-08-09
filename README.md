@@ -1,14 +1,31 @@
 # Guided Diffusion Model for Adversarial Purification
 ### by [Jinyi Wang], [Zhaoyang Lyu], [Bo Dai], [Hongfei Fu]
 
-This repository includes the official PyTorch implementation of our paper:
+This repository includes the official PyTorch implementation of our (paper)[https://arxiv.org/abs/2205.14969]:
+
+```
+@InProceedings{pmlr-v162-nie22a,
+  title = 	 {Diffusion Models for Adversarial Purification},
+  author =       {Nie, Weili and Guo, Brandon and Huang, Yujia and Xiao, Chaowei and Vahdat, Arash and Anandkumar, Animashree},
+  booktitle = 	 {Proceedings of the 39th International Conference on Machine Learning},
+  pages = 	 {16805--16827},
+  year = 	 {2022},
+  editor = 	 {Chaudhuri, Kamalika and Jegelka, Stefanie and Song, Le and Szepesvari, Csaba and Niu, Gang and Sabato, Sivan},
+  volume = 	 {162},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {17--23 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {https://proceedings.mlr.press/v162/nie22a/nie22a.pdf},
+}
+```
+
 
 ## What does our work do?
 We propose a method that gives adversarial robustness to a neural network model against (stochastic) adversarial attacks by using an Guided Diffusion Model.
 
 ## Running Codes
 ### Dependency
-Run the following command to install some necessary python packages by anaconda3 to run our code.
+Run the following command to install some necessary Python 3 packages by anaconda to run our code.
 ```
 conda env create -f environment.yml
 ```
@@ -21,7 +38,7 @@ python main.py --config <config-file>
 For example, we provide the example configuration file `configs/ImageNet_PGD.yml` in the repository.
 
 ### Parallel Running code
-To run the experiments parallely , enter the following command.
+To run the experiments parallelly, enter the following command.
 ```
 python parallel_run.py --device 8 --rank 0 --world_size 8 --config ImageNet_Res50.yml
 ```
