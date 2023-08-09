@@ -1,7 +1,7 @@
 # Guided Diffusion Model for Adversarial Purification
 ### by [Jinyi Wang], [Zhaoyang Lyu], [Bo Dai], [Hongfei Fu]
 
-This repository includes the official PyTorch implementation of our (paper)[https://arxiv.org/abs/2205.14969]:
+This repository includes the official PyTorch implementation of our [paper](https://arxiv.org/abs/2205.14969):
 
 ```
 @InProceedings{pmlr-v162-nie22a,
