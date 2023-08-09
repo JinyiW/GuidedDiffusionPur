@@ -14,11 +14,11 @@ This repository includes the official PyTorch implementation of our [paper](http
 
 
 ## What does our work do?
-We propose a method that gives adversarial robustness to a neural network model against (stochastic) adversarial attacks by using an Guided Diffusion Model.
+We propose a method that gives adversarial robustness to a neural network model against (stochastic) adversarial attacks by using a Guided Diffusion Model.
 
 ## Running Codes
 ### Dependency
-Run the following command to install some necessary Python 3 packages by anaconda to run our code.
+Run the following command to install some necessary Python 3 packages by Anaconda to run our code.
 ```
 conda env create -f environment.yml
 ```
@@ -29,9 +29,9 @@ To run the experiments, enter the following command.
 python main.py --config <config-file>
 ```
 
-## Example CIFAR10
+#### Example CIFAR10
 
-Train the Cifar10 classifier with https://github.com/meliketoy/wide-resnet.pytorch and copy the weights `origin.t7' to
+Train the Cifar10 classifier on a [WideResNet](https://github.com/meliketoy/wide-resnet.pytorch) and copy the weights `origin.t7' to
 ```
 mkdir -p clf_models/run/logs/cifar10
 ```
@@ -41,9 +41,14 @@ For starting the purification process, execute
 python main.py --config default.yml
 ```
 
-## Example ImageNet
+#### Example ImageNet
+
+Download the [pretrained weights](https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_diffusion_uncond.pt) and copy them to the folder `models`. 
 
 For example, we provide the example configuration file `configs/ImageNet_PGD.yml` in the repository.
+```
+python main.py --config ImageNet_Res50.yml
+```
 
 ### Parallel Running code
 To run the experiments parallelly, enter the following command.
